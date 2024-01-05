@@ -25,8 +25,8 @@ function Results(props) {
 
 Results.propTypes = {
   books: PropTypes.object.isRequired,
-  numFound: PropTypes.number.isRequired,
-  docs: PropTypes.array.isRequired,
+  numFound: PropTypes.number,
+  docs: PropTypes.array,
 };
 
 export default Results;
