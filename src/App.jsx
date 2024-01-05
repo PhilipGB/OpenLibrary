@@ -1,7 +1,11 @@
+import { Header, Results, Search } from './components';
+
 function App() {
   return (
     <>
-      <h1>Open Library</h1>
+      <Header />
+      <Search />
+      <Results />
     </>
   );
 }
