@@ -1,11 +1,10 @@
-import { Header, Results, Search } from './components';
+import { Header, Search } from './components';
 
 function App() {
   return (
     <>
       <Header />
       <Search />
-      <Results />
     </>
   );
 }
