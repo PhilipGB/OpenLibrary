@@ -5,7 +5,6 @@ function Results(props) {
 
   return (
     <section>
-      <h2>Results</h2>
       <pre>{JSON.stringify(books, null, 2)}</pre>
     </section>
   );

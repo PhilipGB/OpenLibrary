@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Results } from './';
+import Results from './Results';
 
 function Search() {
   const [books, setBooks] = useState();
@@ -17,8 +17,6 @@ function Search() {
       if (title) query += `title=${title}&`;
       if (author) query += `author=${author}&`;
       if (subject) query += `subject=${subject}&`;
-
-      console.log(query);
 
       const response = await fetch(
         `${baseUrl}${query}fields=key,title,author_name&limit=10`
@@ -48,7 +46,7 @@ function Search() {
             type='text'
             id='title'
             name='title'
-            value={title}
+            value={title ?? ''}
             onChange={(event) => setTitle(event.target.value)}
           />
         </label>
@@ -59,7 +57,7 @@ function Search() {
             type='text'
             id='author'
             name='author'
-            value={author}
+            value={author ?? ''}
             onChange={(event) => setAuthor(event.target.value)}
           />
         </label>
@@ -70,7 +68,7 @@ function Search() {
             type='text'
             id='subject'
             name='subject'
-            value={subject}
+            value={subject ?? ''}
             onChange={(event) => setSubject(event.target.value)}
           />
         </label>
