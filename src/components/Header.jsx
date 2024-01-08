@@ -4,8 +4,8 @@ function Header(props) {
   const { children } = props;
 
   return (
-    <header>
-      <h1>{children}</h1>
+    <header className='w-full bg-white shadow-md py-6'>
+      <h1 className='text-xl font-medium px-4 mx-4'>{children}</h1>
     </header>
   );
 }
