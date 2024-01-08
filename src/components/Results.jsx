@@ -5,15 +5,19 @@ function Results(props) {
 
   return (
     <section>
-      <p>{`Showing 10 of ${numFound} results`}</p>
+      <p>{`Showing ${docs.length} of ${numFound} results`}</p>
       {docs.map((doc) => {
         return (
           <ul key={doc.key}>
-            <h3>{doc.title}</h3>
-            <h4>{`by ${doc.author_name}`}</h4>
+            <h4>
+              {doc.title}
+              {doc.editions.docs[0].subtitle &&
+                `: ${doc.editions.docs[0].subtitle}`}
+            </h4>
+            <h6>{`by ${doc.author_name}`}</h6>
             <h6>
-              {`${doc.edition_count} edition${
-                doc.edition_count > 1 ? 's' : ''
+              {`${doc.edition_count} ${
+                doc.edition_count > 1 ? 'editions' : 'edition'
               }`}
             </h6>
           </ul>

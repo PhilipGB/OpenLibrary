@@ -18,7 +18,9 @@ function Search() {
       if (author) query += `author=${author}&`;
       if (subject) query += `subject=${subject}&`;
 
-      const response = await fetch(`${baseUrl}${query}limit=10`);
+      const response = await fetch(
+        `${baseUrl}${query}&fields=key,title,author_name,edition_count,editions,editions.subtitle&limit=10`
+      );
 
       if (!response.ok) {
         throw new Error('Network response was not ok');

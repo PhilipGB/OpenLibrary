@@ -3,7 +3,7 @@ import { Header, Search } from './components';
 function App() {
   return (
     <>
-      <Header />
+      <Header>Open Library</Header>
       <Search />
     </>
   );
