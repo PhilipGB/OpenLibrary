@@ -5,7 +5,7 @@ function Form(props) {
 
   return (
     <form onSubmit={onSubmit}>
-      <h1 className='text-xl font-medium mb-6'>{name}</h1>
+      <h1 className='text-2xl font-medium mb-6'>{name}</h1>
 
       <ul className='flex-col max-w-screen-sm'>
         {children.map((child, index) => {
@@ -16,12 +16,13 @@ function Form(props) {
           );
         })}
         <li className='text-right'>
-          <input
+          <button
             className='bg-pink-600 py-2 px-4 rounded-md my-8 text-white hover:bg-pink-500 border-inherit'
             type='submit'
-            value='Search'
             disabled={disableSubmit}
-          />
+          >
+            Search
+          </button>
         </li>
       </ul>
     </form>

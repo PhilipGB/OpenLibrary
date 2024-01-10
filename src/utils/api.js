@@ -9,7 +9,7 @@ export const searchBooks = async (title, author, subject) => {
   if (author) query += `author=${author}&`;
   if (subject) query += `subject=${subject}&`;
 
-  query += `&fields=key,title,author_name,edition_count,editions,editions.subtitle&limit=10`;
+  query += `fields=key,title,author_name,edition_count,editions,editions.subtitle&limit=10`;
 
   return await openlibrary(query);
 };
@@ -17,6 +17,28 @@ export const searchBooks = async (title, author, subject) => {
 export const getWorks = async (key) => {
   const query = `/works/${key}.json`;
   return await openlibrary(query);
+};
+
+export const getEditions = async (key) => {
+  const query = `/works/${key}/editions.json?limit=10`;
+  return await openlibrary(query);
+};
+
+export const getAuthors = async (authors) => {
+  const authorsNames = [];
+
+  for (const author of authors) {
+    const authorName = await getField(author + '.json', 'name');
+    authorsNames.push(authorName);
+  }
+
+  return authorsNames;
+};
+
+export const getField = async (endPoint, field) => {
+  const result = await openlibrary(endPoint);
+
+  return result[field];
 };
 
 const openlibrary = async (query) => {
