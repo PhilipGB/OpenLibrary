@@ -35,6 +35,17 @@ export const getAuthors = async (authors) => {
   return authorsNames;
 };
 
+export const getLanguages = async (languageKeys) => {
+  const languages = [];
+
+  for (const languageKey of languageKeys) {
+    const language = await getField(languageKey + '.json', 'name');
+    languages.push(language);
+  }
+
+  return languages;
+};
+
 export const getField = async (endPoint, field) => {
   const result = await openlibrary(endPoint);
 

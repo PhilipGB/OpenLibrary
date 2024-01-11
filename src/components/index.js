@@ -7,3 +7,5 @@ export { default as My404 } from './My404.jsx';
 export { default as Section } from './Section.jsx';
 export { default as Button } from './Button.jsx';
 export { default as Description } from './Description.jsx';
+export { default as ListCard } from './ListCard.jsx';
+export { default as SingleEdition } from './SingleEdition.jsx';

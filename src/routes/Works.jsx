@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getWorks, getEditions, getAuthors } from '../utils/api';
-import { Section, Button, Description } from '../components';
+import { Section, Button, Description, SingleEdition } from '../components';
 import SearchContext from '../contexts/SearchContext';
 
 export function Works() {
@@ -44,29 +44,10 @@ export function Works() {
       <Description description={works.description} />
       {editions && (
         <>
-          <h1>{`Showing ${editions.entries.length} of ${editions.size} editions`}</h1>
-          <br />
+          <p className='mb-6'>{`Showing ${editions.entries.length} of ${editions.size} editions`}</p>
           <ul>
             {editions.entries.map((edition) => {
-              return (
-                <li key={edition.key}>
-                  <h1>{edition.title}</h1>
-                  <p>
-                    <strong>{edition.publish_date}</strong>
-                    {edition.publishers &&
-                      ' ' + edition.publishers.join(', ').toString()}
-                  </p>
-                  <p>
-                    {edition.isbn_10 &&
-                      `ISBN-10: ${edition.isbn_10.join(', ').toString()}`}
-                    {!edition.isbn_10 &&
-                      edition.isbn_13 &&
-                      `ISBN-13: ${edition.isbn_13.join(', ').toString()}`}
-                  </p>
-                  <p>{edition.languages && edition.languages[0].key}</p>
-                  <br />
-                </li>
-              );
+              return <SingleEdition edition={edition} key={edition.key} />;
             })}
           </ul>
         </>
