@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import Button from './Button';
 
 function Form(props) {
   const { name, children, onSubmit, disableSubmit = false } = props;
@@ -15,14 +16,10 @@ function Form(props) {
             </li>
           );
         })}
-        <li className='text-right'>
-          <button
-            className='bg-pink-600 py-2 px-4 rounded-md my-8 text-white hover:bg-pink-500 border-inherit'
-            type='submit'
-            disabled={disableSubmit}
-          >
+        <li className='text-right my-8'>
+          <Button disabled={disableSubmit} type='submit'>
             Search
-          </button>
+          </Button>
         </li>
       </ul>
     </form>

@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getWorks, getEditions, getAuthors } from '../utils/api';
-import { Section, Button } from '../components';
+import { Section, Button, Description } from '../components';
 import SearchContext from '../contexts/SearchContext';
 
 export function Works() {
@@ -11,7 +11,7 @@ export function Works() {
     authors: [],
   });
   const [editions, setEditions] = useState();
-  const [authors, setAuthors] = useState([]);
+  const [authors, setAuthors] = useState();
   const { search } = useContext(SearchContext);
   const { key } = useParams();
   const navigate = useNavigate();
@@ -25,10 +25,12 @@ export function Works() {
   }, [key, navigate]);
 
   useEffect(() => {
-    getAuthors(works.authors.map((x) => x.author.key)).then((response) =>
-      setAuthors(response)
-    );
-  }, [works]);
+    if (works.authors) {
+      getAuthors(works.authors.map((x) => x.author.key)).then((response) =>
+        setAuthors(response.join(', ').toString())
+      );
+    }
+  }, [works.authors]);
 
   return (
     <Section>
@@ -38,11 +40,8 @@ export function Works() {
         )}
         <h1 className='text-2xl font-medium'>{works.title}</h1>
       </div>
-      <p>{authors.length > 0 && `by ${authors.join(', ').toString()}`}</p>
-      <br />
-      <p className='whitespace-pre-wrap'>{works.description}</p>
-
-      <br />
+      <p>{authors && `by ${authors}`}</p>
+      <Description description={works.description} />
       {editions && (
         <>
           <h1>{`Showing ${editions.entries.length} of ${editions.size} editions`}</h1>
