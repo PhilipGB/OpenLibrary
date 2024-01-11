@@ -1,23 +1,31 @@
-import { useState } from 'react';
-import { Form, TextInput, Results } from './';
+import { useState, useContext } from 'react';
+import { Form, TextInput, Results, Section } from './';
 import { searchBooks } from '../utils/api';
+import SearchContext from '../contexts/SearchContext';
 
 function Search() {
-  const [books, setBooks] = useState();
-  const [title, setTitle] = useState();
-  const [author, setAuthor] = useState();
-  const [subject, setSubject] = useState();
+  const { search, setSearch } = useContext(SearchContext);
+  const [books, setBooks] = useState(search.books);
+  const [title, setTitle] = useState(search.title);
+  const [author, setAuthor] = useState(search.author);
+  const [subject, setSubject] = useState(search.subject);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     const data = await searchBooks(title, author, subject);
-    console.log(data);
+
     setBooks(data);
+    setSearch({
+      books: data,
+      title: title,
+      author: author,
+      subject: subject,
+    });
   };
 
   return (
-    <div className='p-10 max-w-screen-sm'>
+    <Section>
       <Form
         name='Search'
         onSubmit={handleSubmit}
@@ -46,7 +54,7 @@ function Search() {
         />
       </Form>
       {books && <Results books={books} />}
-    </div>
+    </Section>
   );
 }
 

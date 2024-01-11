@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import ResultCard from './ResultCard';
+import SingleResult from './SingleResult';
 
 function Results(props) {
   const { numFound, docs } = props.books;
@@ -9,7 +9,7 @@ function Results(props) {
       <p className='mb-6'>{`Showing ${docs.length} of ${numFound} results`}</p>
       <ul>
         {docs.map((doc) => {
-          return <ResultCard doc={doc} key={doc.key} />;
+          return <SingleResult doc={doc} key={doc.key} />;
         })}
       </ul>
     </section>
