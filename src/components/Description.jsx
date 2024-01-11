@@ -4,16 +4,16 @@ import { useState } from 'react';
 export function Description(props) {
   const { description } = props;
   const [showMore, setShowMore] = useState(false);
-  const maxLength = 320;
+  const maxLength = 350;
 
   const isString = (value) =>
     typeof value === 'string' || value instanceof String;
 
   const text = isString(description)
     ? description
-    : isString(description.value)
+    : description && isString(description.value)
     ? description.value
-    : 'NO DESCRIPTION';
+    : '';
 
   const truncatedText = showMore ? text : text.slice(0, maxLength);
 
@@ -26,10 +26,14 @@ export function Description(props) {
   return (
     <div className='mb-8'>
       <p
-        className='whitespace-pre-wrap my-8'
-        style={!showMore ? gradientMask : {}}
+        className={`whitespace-pre-wrap my-8 ${
+          !truncatedText.length && 'italic'
+        }`}
+        style={
+          !showMore && truncatedText.length >= maxLength ? gradientMask : {}
+        }
       >
-        {truncatedText}
+        {truncatedText.length ? truncatedText : 'NO DESCRIPTION'}
       </p>
       {text.length > maxLength && (
         <button
