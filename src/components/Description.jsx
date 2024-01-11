@@ -4,7 +4,7 @@ import { useState } from 'react';
 export function Description(props) {
   const { description } = props;
   const [showMore, setShowMore] = useState(false);
-  const maxLength = 350;
+  const maxLength = 540;
 
   const isString = (value) =>
     typeof value === 'string' || value instanceof String;
