@@ -5,7 +5,7 @@ function Button(props) {
 
   return (
     <button
-      className='bg-pink-600 py-2 px-4 rounded-md text-white hover:bg-pink-500 border-inherit max-w-fit'
+      className='bg-pink-600 py-2 px-4 rounded-md text-white hover:bg-pink-500 border-inherit min-w-fit max-w-fit max-h-fit'
       onClick={onClick}
       disabled={disabled ?? false}
       type={type}
