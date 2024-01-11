@@ -4,7 +4,7 @@
 
 ## Description
 
-This is a book search application using the Open Library API () built using React and tailwindcss
+This is a book search application using the Open Library API (https://openlibrary.org/developers/api) built using React and tailwindcss
 
 You can access a live demo at https://golden-sherbet-c9d247.netlify.app
 
