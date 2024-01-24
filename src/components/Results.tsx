@@ -1,8 +1,7 @@
-import PropTypes from 'prop-types';
 import SingleResult from './SingleResult';
 
-function Results(props) {
-  const { numFound, docs } = props.books;
+function Results({ books }) {
+  const { numFound, docs } = books;
 
   return (
     <section>
@@ -16,10 +15,10 @@ function Results(props) {
   );
 }
 
-Results.propTypes = {
-  books: PropTypes.object.isRequired,
-  numFound: PropTypes.number,
-  docs: PropTypes.array,
-};
+// Results.propTypes = {
+//   books: PropTypes.object.isRequired,
+//   numFound: PropTypes.number,
+//   docs: PropTypes.array,
+// };
 
 export default Results;

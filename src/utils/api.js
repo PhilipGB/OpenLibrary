@@ -16,11 +16,17 @@ export const searchBooks = async (title, author, subject) => {
 
 export const getWorks = async (key) => {
   const query = `/works/${key}.json`;
-  return await openlibrary(query);
+  const response = await openlibrary(query);
+
+  if ((await response.type?.key) === '/type/redirect') {
+    return await openlibrary((await response.location) + '.json');
+  }
+
+  return response;
 };
 
 export const getEditions = async (key) => {
-  const query = `/works/${key}/editions.json?limit=10`;
+  const query = `${key}/editions.json?limit=10`;
   return await openlibrary(query);
 };
 
@@ -62,6 +68,6 @@ const openlibrary = async (query) => {
 
     return await response.json();
   } catch (error) {
-    console.error('Error fetching books:', error);
+    console.error(`Error fetching ${query}:`, error);
   }
 };

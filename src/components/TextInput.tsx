@@ -1,8 +1,12 @@
-import PropTypes from 'prop-types';
-
-function TextInput(props) {
-  const { name, value, onChange } = props;
-
+function TextInput({
+  name,
+  value,
+  onChange,
+}: {
+  name: string;
+  value: string | number | readonly string[] | undefined;
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
+}) {
   return (
     <label className='text-sm font-medium'>
       {name}
@@ -18,11 +22,5 @@ function TextInput(props) {
     </label>
   );
 }
-
-TextInput.propTypes = {
-  name: PropTypes.string,
-  value: PropTypes.string,
-  onChange: PropTypes.func,
-};
 
 export default TextInput;

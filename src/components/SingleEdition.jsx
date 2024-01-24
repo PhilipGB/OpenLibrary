@@ -3,8 +3,7 @@ import { getLanguages } from '../utils/api';
 import PropTypes from 'prop-types';
 import ListCard from './ListCard';
 
-function SingleEdition(props) {
-  const { edition } = props;
+function SingleEdition({ edition }) {
   const [languages, setLanguages] = useState('');
 
   useEffect(() => {

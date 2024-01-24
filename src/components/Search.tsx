@@ -1,16 +1,16 @@
 import { useState, useContext } from 'react';
-import { Form, TextInput, Results, Section } from './';
+import { Form, TextInput, Results, Section } from '.';
 import { searchBooks } from '../utils/api';
-import SearchContext from '../contexts/SearchContext';
+import SearchContext from '../providers/SearchContext';
 
 function Search() {
   const { search, setSearch } = useContext(SearchContext);
-  const [books, setBooks] = useState(search.books);
-  const [title, setTitle] = useState(search.title);
-  const [author, setAuthor] = useState(search.author);
-  const [subject, setSubject] = useState(search.subject);
+  const [books, setBooks] = useState(search?.books);
+  const [title, setTitle] = useState(search?.title);
+  const [author, setAuthor] = useState(search?.author);
+  const [subject, setSubject] = useState(search?.subject);
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const data = await searchBooks(title, author, subject);
@@ -53,7 +53,7 @@ function Search() {
           onChange={(event) => setSubject(event.target.value)}
         />
       </Form>
-      {books && <Results books={books} />}
+      {books ? <Results books={books} /> : null}
     </Section>
   );
 }

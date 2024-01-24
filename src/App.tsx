@@ -2,14 +2,14 @@ import { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Header, Search, My404 } from './components';
 import { Works } from './routes/Works';
-import SearchContext from './contexts/SearchContext';
+import { SearchType, SearchContext } from './providers/SearchContext';
 
 function App() {
-  const [search, setSearch] = useState({
+  const [search, setSearch] = useState<SearchType>({
     books: null,
-    title: null,
-    author: null,
-    subject: null,
+    title: '',
+    author: '',
+    subject: '',
   });
 
   return (
@@ -19,8 +19,8 @@ function App() {
           <Header>Open Library</Header>
           <Routes>
             <Route path='/' element={<Search />} />
-            <Route path='/works/:key' element={<Works />} />
-            <Route path='*' exact={true} element={<My404 />} />
+            <Route path='/works/:key/:title?' element={<Works />} />
+            <Route path='*' element={<My404 />} />
           </Routes>
         </main>
       </BrowserRouter>

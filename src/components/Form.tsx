@@ -1,9 +1,17 @@
-import PropTypes from 'prop-types';
 import Button from './Button';
+import { FormEventHandler } from 'react';
 
-function Form(props) {
-  const { name, children, onSubmit, disableSubmit = false } = props;
-
+function Form({
+  name,
+  children,
+  onSubmit,
+  disableSubmit = false,
+}: {
+  name: string;
+  children: React.ReactNode[];
+  onSubmit: FormEventHandler<HTMLFormElement>;
+  disableSubmit: boolean;
+}) {
   return (
     <form onSubmit={onSubmit}>
       <h1 className='text-2xl font-medium mb-6'>{name}</h1>
@@ -25,12 +33,5 @@ function Form(props) {
     </form>
   );
 }
-
-Form.propTypes = {
-  name: PropTypes.string,
-  children: PropTypes.array.isRequired,
-  onSubmit: PropTypes.func.isRequired,
-  disableSubmit: PropTypes.bool,
-};
 
 export default Form;
